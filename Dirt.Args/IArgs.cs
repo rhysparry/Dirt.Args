@@ -2,13 +2,9 @@ namespace Dirt;
 
 public interface IArgs
 {
-    IReadOnlyCollection<string> Flags { get; }
-    IReadOnlyDictionary<string, string> ValueFlags { get; }
-    IReadOnlyDictionary<string, IReadOnlyList<string>> MultiValueFlags { get; }
-    IReadOnlyList<string> Remaining { get; }
-
     bool HasFlag(string flag);
     int GetFlagCount(string flag);
     string? GetFlagValue(string flag);
     IReadOnlyList<string> GetMultiFlagValue(string flag);
+    IReadOnlyList<string> Remaining { get; }
 }

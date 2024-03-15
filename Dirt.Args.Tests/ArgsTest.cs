@@ -87,8 +87,9 @@ public class ArgsTest
     {
         var rawArguments = new[] { "--flag=value1", "--flag=value2" };
         var args = new Args(rawArguments);
-        Assert.Equal("value1", args.ValueFlags["flag"]);
-        Assert.Equal(args.ValueFlags["flag"], args.MultiValueFlags["flag"][0]);
+        var argsData = args as IArgsData;
+        Assert.Equal("value1", argsData.ValueFlags["flag"]);
+        Assert.Equal(argsData.ValueFlags["flag"], argsData.MultiValueFlags["flag"][0]);
     }
 
     [Fact]
@@ -103,7 +104,8 @@ public class ArgsTest
     {
         var rawArguments = new []{ "--flag", "--flag" };
         var args = new Args(rawArguments);
-        Assert.Single(args.Flags);
-        Assert.Equal(new [] { "flag" }, args.Flags);
+        var argsData = args as IArgsData;
+        Assert.Single(argsData.Flags);
+        Assert.Equal("flag", argsData.Flags.Keys.First());
     }
 }

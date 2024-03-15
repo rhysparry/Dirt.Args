@@ -33,19 +33,28 @@ if (args.HasFlag("foo")) {
 }
 ```
 
-The `IArgs` interface exposes the following properties:
-
-- `IReadOnlyCollection<string> Flags` - A collection of all flags that were set
-- `IReadOnlyDictionary<string, string> ValueFlags` - A dictionary of all key-value pairs that were set
-- `IReadOnlyDictionary<string, IReadOnlyList<string>> MultiValueFlags` - A dictionary of all value flags with all their values
-- `IReadOnlyList<string> Remaining` - Any other arguments that are not flags
-
-You can use the following methods to conveniently check flags and their values:
+The `IArgs` interface exposes the following methods and properties
 
 - `bool HasFlag(string flag)` - Returns true if the flag was set
 - `int GetFlagCount(string flag)` - Gets the number of times the flag was set
 - `string GetValueFlag(string flag)` - Gets the value of the flag, or null if it was not set
 - `IReadOnlyList<string> GetMultiValueFlag(string flag)` - Gets the values of the flag, or an empty list if it was not set
+- `IReadOnlyList<string> Remaining` - Any other arguments that are not flags
+
+
+The `Args` class explicitly implements these properties from the `IArgsData` interface to allow access to the underlying data directly:
+
+- `IReadOnlyDictionary<string, IFlagData> Flags` - A dictionary of all flags that were set and their values
+- `IReadOnlyDictionary<string, string> ValueFlags` - A dictionary of all key-value pairs that were set
+- `IReadOnlyDictionary<string, IReadOnlyList<string>> MultiValueFlags` - A dictionary of all value flags with all their values
+
+The `ValueFlags` and `MultiValueFlags` properties are projections of the data exposed by the `Flags` property.
+
+The `IFlagData` interface exposes the following properties:
+
+- `string Flag` - The name of the flag
+- `int Count` - The number of times the flag was set
+- `IReadOnlyList<string> Values` - The values associated with the flag. This could be empty.
 
 ## License
 
