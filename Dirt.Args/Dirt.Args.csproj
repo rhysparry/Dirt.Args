@@ -5,6 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>Dirt</RootNamespace>
+        <Authors>Rhys Parry</Authors>
+        <RepositoryUrl>https://github.com/rhysparry/Dirt.Args</RepositoryUrl>
     </PropertyGroup>
 
 </Project>

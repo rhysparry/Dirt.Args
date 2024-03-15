@@ -90,4 +90,20 @@ public class ArgsTest
         Assert.Equal("value1", args.ValueFlags["flag"]);
         Assert.Equal(args.ValueFlags["flag"], args.MultiValueFlags["flag"][0]);
     }
+
+    [Fact]
+    public void FlagDefaultConstructorUsesCommandLineArgsDoesNotFail()
+    {
+        var args = new Args();
+        Assert.NotNull(args);
+    }
+
+    [Fact]
+    public void FlagsListDoesNotContainDuplicates()
+    {
+        var rawArguments = new []{ "--flag", "--flag" };
+        var args = new Args(rawArguments);
+        Assert.Single(args.Flags);
+        Assert.Equal(new [] { "flag" }, args.Flags);
+    }
 }

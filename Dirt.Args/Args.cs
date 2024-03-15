@@ -4,7 +4,7 @@ public class Args : IArgs
 {
     private readonly Dictionary<string, int> _flags;
 
-    public Args() : this (Environment.GetCommandLineArgs())
+    public Args() : this (Environment.GetCommandLineArgs().Skip(1))
     {
     }
 
@@ -61,13 +61,13 @@ public class Args : IArgs
         }
 
         _flags = flags;
-        Flags = flags.Keys.ToList();
+        Flags = flags.Keys.ToList().AsReadOnly();
         ValueFlags = valueFlags;
         MultiValueFlags = multiValueFlags.ToDictionary(x => x.Key, x => x.Value as IReadOnlyList<string>);
         Remaining = remaining;
     }
 
-    public IReadOnlyList<string> Flags { get; }
+    public IReadOnlyCollection<string> Flags { get; }
     public IReadOnlyDictionary<string, string> ValueFlags { get; }
     public IReadOnlyDictionary<string, IReadOnlyList<string>> MultiValueFlags { get; }
     public IReadOnlyList<string> Remaining { get; }
