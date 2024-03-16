@@ -12,8 +12,9 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Copyright>Copyright 2024 Rhys Parry</Copyright>
-        <AssemblyVersion>1.0.1</AssemblyVersion>
-        <FileVersion>1.0.1</FileVersion>
+        <AssemblyVersion>1.0.2</AssemblyVersion>
+        <FileVersion>1.0.2</FileVersion>
+        <Version>1.0.2</Version>
     </PropertyGroup>
     
     <ItemGroup>
