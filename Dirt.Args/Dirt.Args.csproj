@@ -8,6 +8,11 @@
         <RootNamespace>Dirt</RootNamespace>
         <Authors>Rhys Parry</Authors>
         <RepositoryUrl>https://github.com/rhysparry/Dirt.Args</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 
 Dirt.Args is a simple library for parsing command line arguments in .NET.
 
-It's goal is to require no configuration and be a step up from using the built-in `string[] args` parameter in your `Main` method.
+Its goal is to require no configuration and be a step up from using the built-in `string[] args` parameter in your `Main` method.
 
 For more advanced scenarios, you should consider using a more feature-rich library.
 
