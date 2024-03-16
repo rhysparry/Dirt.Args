@@ -7,8 +7,13 @@
         <Nullable>enable</Nullable>
         <RootNamespace>Dirt</RootNamespace>
         <Authors>Rhys Parry</Authors>
+        <Company>Rhys Parry</Company>
         <RepositoryUrl>https://github.com/rhysparry/Dirt.Args</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Copyright>Copyright 2024 Rhys Parry</Copyright>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
     </PropertyGroup>
     
     <ItemGroup>
