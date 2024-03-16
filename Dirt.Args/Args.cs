@@ -1,9 +1,7 @@
 ﻿namespace Dirt;
 
-public class Args : IArgs, IArgsData
+public class Args(IArgsData data) : IArgs, IArgsData
 {
-    private readonly IArgsData _argsData;
-
     public Args() : this(new DefaultArgsSource())
     {
     }
@@ -16,18 +14,13 @@ public class Args : IArgs, IArgsData
     {
     }
 
-    public Args(IArgsData data)
-    {
-        _argsData = data;
-    }
+    IReadOnlyDictionary<string, IFlagData> IArgsData.Flags => data.Flags;
+    IReadOnlyDictionary<string, string> IArgsData.ValueFlags => data.ValueFlags;
+    IReadOnlyDictionary<string, IReadOnlyList<string>> IArgsData.MultiValueFlags => data.MultiValueFlags;
+    public IReadOnlyList<string> Remaining => data.Remaining;
 
-    IReadOnlyDictionary<string, IFlagData> IArgsData.Flags => _argsData.Flags;
-    IReadOnlyDictionary<string, string> IArgsData.ValueFlags => _argsData.ValueFlags;
-    IReadOnlyDictionary<string, IReadOnlyList<string>> IArgsData.MultiValueFlags => _argsData.MultiValueFlags;
-    public IReadOnlyList<string> Remaining => _argsData.Remaining;
-
-    public bool HasFlag(string flag) => _argsData.Flags.ContainsKey(flag);
-    public int GetFlagCount(string flag) => _argsData.Flags.GetValueOrDefault(flag)?.Count ?? 0;
+    public bool HasFlag(string flag) => data.Flags.ContainsKey(flag);
+    public int GetFlagCount(string flag) => data.Flags.GetValueOrDefault(flag)?.Count ?? 0;
 
     public string? GetFlagValue(string flag)
     {
@@ -36,5 +29,5 @@ public class Args : IArgs, IArgsData
     }
 
     public IReadOnlyList<string> GetMultiFlagValue(string flag) =>
-        _argsData.Flags.GetValueOrDefault(flag)?.Values ?? new List<string>();
+        data.Flags.GetValueOrDefault(flag)?.Values ?? new List<string>();
 }
