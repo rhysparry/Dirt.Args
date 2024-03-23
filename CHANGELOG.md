@@ -7,18 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+### Added
 
 - Add XML documentation
+
+### Changed
+
 - Link issues in changelog
+- Improve changelog grouping
 
 ## [1.1.0] - 2024-03-23
 
-### Changed
+### Added
 
 - Add support for netstandard2.0 (Resolves [#3](https://github.com/rhysparry/Dirt.Args/issues/3))
-- Update CI Build to use justfile
 - Add a changelog (Resolves [#6](https://github.com/rhysparry/Dirt.Args/issues/6))
+
+### Changed
+
+- Update CI Build to use justfile
 
 ### Fixed
 
