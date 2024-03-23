@@ -20,3 +20,6 @@ updates:
       interval: "weekly"
     assignees:
       - "rhysparry"
+    commit-message:
+      prefix: "chore(ci)"
+      include: "scope"
