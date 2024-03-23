@@ -13,22 +13,28 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
-        - name: Setup .NET Core
+        - name: Setup .NET Core 6
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '6.0.x'
+        - name: Setup .NET Core 8
           uses: actions/setup-dotnet@v4
           with:
             dotnet-version: '8.0.x'
+        - name: Install just
+          uses: extractions/setup-just@v2
 
         - name: Restore dependencies
-          run: dotnet restore
+          run: just --no-deps restore
 
         - name: Build
-          run: dotnet build --configuration Release
+          run: just --no-deps build
 
         - name: Test
-          run: dotnet test --configuration Release --no-build --verbosity normal
+          run: just --no-deps test
 
         - name: Pack
-          run: dotnet pack --configuration Release
+          run: just --no-deps pack
           if: startsWith(github.ref, 'refs/tags/v')
 
         - name: Create a release with the NuGet Package
@@ -47,6 +53,6 @@ jobs:
           if: startsWith(github.ref, 'refs/tags/v')
 
         - name: Push NuGet package
-          run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
+          run: just --no-deps nuget-push
           if: startsWith(github.ref, 'refs/tags/v')
 

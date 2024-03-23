@@ -19,6 +19,9 @@ internal class ArgsData : IArgsData
         while (argsEnumerator.MoveNext())
         {
             var arg = argsEnumerator.Current;
+            #if NETSTANDARD2_0
+            if (arg == null) break;
+            #endif
             if (arg == "--")
             {
                 while (argsEnumerator.MoveNext())
@@ -29,7 +32,11 @@ internal class ArgsData : IArgsData
             }
             if (arg.StartsWith("--"))
             {
+                #if NETSTANDARD2_0
+                var flagValue = arg.Substring(2);
+                #else
                 var flagValue = arg[2..];
+                #endif
                 var flagValueSplit = flagValue.Split('=', 2);
                 if (flagValueSplit.Length == 2)
                 {
@@ -44,7 +51,11 @@ internal class ArgsData : IArgsData
             }
             else if (arg.StartsWith('-'))
             {
+                #if NETSTANDARD2_0
+                var flagValue = arg.Substring(1);
+                #else
                 var flagValue = arg[1..];
+                #endif
                 foreach (var flag in flagValue)
                 {
                     flags.IncrementFlag(flag.ToString());
