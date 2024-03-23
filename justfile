@@ -22,6 +22,9 @@ clean:
 nuget-push: (is-not-empty nugetApiKey) pack
     @dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key {{nugetApiKey}}
 
+changelog:
+    git-cliff --tag {{version}} --output CHANGELOG.md
+
 [private]
 [windows]
 @is-not-empty value:
