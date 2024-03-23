@@ -1,7 +1,7 @@
 set windows-shell := ["nu", "-c"]
 
 version := "1.1.0"
-configuration := "Release"
+configuration := env("BUILD_CONFIGURATION", "Release")
 nugetApiKey := env("NUGET_API_KEY", "")
 
 restore:
