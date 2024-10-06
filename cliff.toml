@@ -23,7 +23,7 @@ body = """
     {% for commit in commits %}
         - {{ commit.message | upper_first }}{% for f in commit.footers -%}
         {% if f.token in ["Resolves", "Fixes"] -%}
-        {{ " (" ~ f.token }} [{{ f.value }}](https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}/issues/{{ f.value | trim_start_matches(pat="#") }}))
+        {{ " (" ~ f.token }} [{{ f.value }}](https://github.com/rhysparry/Dirt.Args/issues/{{ f.value | trim_start_matches(pat="#") }}))
         {%- endif -%}
         {% endfor %}\
     {% endfor %}
@@ -35,11 +35,11 @@ footer = """
     {% if release.version -%}
         {% if release.previous.version -%}
             [{{ release.version | trim_start_matches(pat="v") }}]: \
-                https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}\
+                https://github.com/rhysparry/Dirt.Args\
                     /compare/{{ release.previous.version }}..{{ release.version }}
         {% endif -%}
     {% else -%}
-        [unreleased]: https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}\
+        [unreleased]: https://github.com/rhysparry/Dirt.Args\
             /compare/{{ release.previous.version }}..HEAD
     {% endif -%}
 {% endfor %}
