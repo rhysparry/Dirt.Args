@@ -1,3 +1,5 @@
+set windows-shell := ["pwsh.exe", "-NoProfile", "-c"]
+
 export NuGetApiKey := env("NUGET_API_KEY", "")
 export Version := trim_start_match(`git-cliff --bumped-version`, "v")
 
