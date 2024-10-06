@@ -1,5 +1,5 @@
 export NuGetApiKey := env("NUGET_API_KEY", "")
-export Version := `git-cliff --bumped-version | sed 's/^v//'`
+export Version := trim_start_match(`git-cliff --bumped-version`, "v")
 
 restore:
     ./build.cmd -target Restore
