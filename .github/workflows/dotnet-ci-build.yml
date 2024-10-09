@@ -17,6 +17,8 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
 
         - name: Setup .NET Core 6
           uses: actions/setup-dotnet@v4
@@ -26,5 +28,9 @@ jobs:
           uses: actions/setup-dotnet@v4
           with:
             dotnet-version: '8.0.x'
+        - name: "Install tools"
+          uses: taiki-e/install-action@v2
+          with:
+            tool: just@1.36.0,git-cliff@2.6.1
         - name: Test
-          run: ./build.sh -target Test
+          run: just test
