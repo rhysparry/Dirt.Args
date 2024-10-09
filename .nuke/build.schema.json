@@ -9,6 +9,10 @@
         "Release"
       ]
     },
+    "GithubRef": {
+      "type": "string",
+      "description": "GitHub Ref"
+    },
     "NuGetApiKey": {
       "type": "string",
       "description": "NuGet API key",

@@ -12,7 +12,7 @@ build:
 test:
     ./build.cmd -target Test
 
-pack: build
+pack:
     ./build.cmd -target Pack
 
 clean:
@@ -20,6 +20,9 @@ clean:
 
 nuget-push:
     ./build.cmd -target Publish
+    
+nuget-push-no-pack:
+    ./build.cmd -target Publish -skip Pack
 
 changelog:
     git-cliff --output CHANGELOG.md

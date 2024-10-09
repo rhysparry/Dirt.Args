@@ -1,8 +1,11 @@
+using System.Linq;
 using JetBrains.Annotations;
 using Nuke.Common;
+using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
+using NUlid;
 
 class Build : NukeBuild
 {
@@ -22,7 +25,30 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("Version to use")] readonly string Version = "0.0.0-undefined";
+    [Parameter("Version to use")] readonly string Version = "0.0.0";
+
+    [Parameter("GitHub Ref")] readonly string GithubRef = "undefined";
+    
+    [GitRepository] readonly GitRepository? GitRepository;
+    
+    readonly Ulid BuildId = Ulid.NewUlid();
+
+    string BuildVersion
+    {
+        get
+        {
+            var preReleaseTag = IsLocalBuild ? "dev" : "pre";
+            var preReleaseVersion = $"{Version}-{preReleaseTag}.{BuildId}";
+            if (GitRepository is null)
+            {
+                return $"{Version}-{preReleaseTag}.{BuildId}";
+            }
+
+            return IsReleaseTag ? Version : preReleaseVersion;
+        }
+    }
+
+    bool IsReleaseTag => GithubRef == $"refs/tags/v{Version}";
     
     [Secret, Parameter("NuGet API key")] readonly string? NuGetApiKey;
 
@@ -53,7 +79,7 @@ class Build : NukeBuild
             DotNetTasks.DotNetBuild(s => s
                 .SetProjectFile(Solution)
                 .SetConfiguration(Configuration)
-                .SetVersion(Version)
+                .SetVersion(BuildVersion)
                 .SetAssemblyVersion(Version)
                 .EnableNoRestore()
             );
@@ -79,7 +105,7 @@ class Build : NukeBuild
             DotNetTasks.DotNetPack(s => s
                 .SetProject(Solution.Dirt_Args)
                 .SetConfiguration(Configuration)
-                .SetVersion(Version)
+                .SetVersion(BuildVersion)
                 .SetOutputDirectory(Artifacts)
                 .EnableNoBuild()
             );
@@ -91,6 +117,7 @@ class Build : NukeBuild
         .Requires(() => NuGetApiKey)
         .Executes(() =>
         {
+            Assert.True(IsReleaseTag, "Must be a release tag to publish");
             DotNetTasks.DotNetNuGetPush(s => s
                 .SetSource("https://api.nuget.org/v3/index.json")
                 .SetTargetPath(Artifacts / "*.nupkg")

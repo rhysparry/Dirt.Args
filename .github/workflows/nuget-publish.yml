@@ -12,6 +12,8 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
 
         - name: Setup .NET Core 6
           uses: actions/setup-dotnet@v4
@@ -21,13 +23,17 @@ jobs:
           uses: actions/setup-dotnet@v4
           with:
             dotnet-version: '8.0.x'
+        - name: "Install tools"
+          uses: taiki-e/install-action@v2
+          with:
+            tool: just@1.36.0,git-cliff@2.6.1
 
         - name: Test
-          run: ./build.sh -target Test
-          if: ${{ ! startsWith(github.ref, 'refs/heads/main') }}
+          run: just test
+          if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
 
         - name: Pack
-          run: ./build.sh -target Pack
+          run: just pack
           if: startsWith(github.ref, 'refs/tags/v')
 
         - name: Create a release with the NuGet Package
@@ -46,6 +52,6 @@ jobs:
           if: startsWith(github.ref, 'refs/tags/v')
 
         - name: Push NuGet package
-          run: ./build.sh -skip Pack -target Publish
+          run: just nuget-push-no-pack
           if: startsWith(github.ref, 'refs/tags/v')
 
