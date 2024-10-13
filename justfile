@@ -4,7 +4,7 @@ export NuGetApiKey := env("NUGET_API_KEY", "")
 export Version := trim_start_match(`git-cliff --bumped-version`, "v")
 
 build-cmd := if os_family() == "windows" {
-    "build.cmd"
+    "./build.cmd"
 } else {
     "./build.sh"
 }
