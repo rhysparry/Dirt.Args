@@ -8,6 +8,7 @@ build-cmd := if os_family() == "windows" {
 } else {
     "./build.sh"
 }
+mkdir-p := if os_family() == "windows" { "New-Item -Type Directory -Force" } else { "mkdir -p" }
 
 restore:
     {{build-cmd}} -target Restore
@@ -29,6 +30,13 @@ nuget-push:
     
 nuget-push-no-pack:
     {{build-cmd}} -target Publish -skip Pack
+
+[private]
+artifacts-dir:
+    {{ mkdir-p }} artifacts
+
+release-notes: artifacts-dir
+    git-cliff --latest --strip header --output artifacts/RELEASE-NOTES.md
 
 changelog:
     git-cliff --output CHANGELOG.md
