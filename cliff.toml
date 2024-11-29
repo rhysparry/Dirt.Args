@@ -66,6 +66,10 @@ commit_parsers = [
   { message = "^.*: [Ff]ix", group = "Fixed" },
   { message = "^.*", group = "Changed" },
 ]
+# Pre-process commits
+commit_preprocessors = [
+  { pattern = "\\(#(\\d+)\\)", replace = "([#$1](https://github.com/rhysparry/Dirt.Args/pull/$1))" }
+]
 # protect breaking changes from being skipped due to matching a skipping commit_parser
 protect_breaking_commits = false
 # filter out the commits that are not matched by commit parsers
