@@ -35,3 +35,31 @@ release-notes: artifacts-dir
 
 changelog:
     git-cliff --output CHANGELOG.md
+
+[windows, private]
+assert-branch name="main":
+    @if ((git branch --show-current) -ne "{{ name }}") { throw "Not on {{ name }} branch" }
+
+[unix, private]
+assert-branch name="main":
+    [ "$(git branch --show-current)" = "{{ name }}" ]
+
+[windows, private]
+assert-no-pending-changes:
+    @if ($null -ne (git status --porcelain)) { throw "There are pending changes" }
+
+[unix, private]
+assert-no-pending-changes:
+    [ -z "$(git status --porcelain)" ]
+
+release: (assert-branch "main") assert-no-pending-changes && push-release
+    git pull
+    git-cliff --bump --output CHANGELOG.md
+    git-cliff --bump --unreleased --strip header --output artifacts/RELEASE-NOTES.md
+    git add CHANGELOG.md
+    git commit -m "chore(release): release {{ Version }}"
+    git tag "v{{ Version }}" -F artifacts/RELEASE-NOTES.md --cleanup=whitespace
+
+[private, confirm("Are you sure you want to push the release?")]
+push-release:
+    git push origin main --tags
