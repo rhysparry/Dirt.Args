@@ -11,6 +11,12 @@ repos:
     - id: trailing-whitespace
 - repo: local
   hooks:
+    - id: commitlint
+      name: Lint commit message
+      entry: commitlint lint --message
+      language: system
+      stages:
+        - commit-msg
     - id: csharpier
       name: Format C#
       entry: dotnet tool run dotnet-csharpier
