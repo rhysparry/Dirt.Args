@@ -1,4 +1,4 @@
-﻿namespace Dirt;
+namespace Dirt;
 
 /// <summary>
 /// Represents a collection of command-line arguments.
