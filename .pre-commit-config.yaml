@@ -9,6 +9,10 @@ repos:
     - id: fix-byte-order-marker
     - id: end-of-file-fixer
     - id: trailing-whitespace
+- repo: https://github.com/rhysd/actionlint
+  rev: v1.7.4
+  hooks:
+    - id: actionlint
 - repo: local
   hooks:
     - id: commitlint
