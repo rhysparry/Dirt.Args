@@ -16,7 +16,7 @@ class Build : NukeBuild
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
     public static int Main () => Execute<Build>(x => x.Compile);
-    
+
     AbsolutePath Artifacts => RootDirectory / "artifacts";
 
     [Solution(GenerateProjects = true)]
@@ -28,9 +28,9 @@ class Build : NukeBuild
     [Parameter("Version to use")] readonly string Version = "0.0.0";
 
     [Parameter("GitHub Ref")] readonly string GithubRef = "undefined";
-    
+
     [GitRepository] readonly GitRepository? GitRepository;
-    
+
     readonly Ulid BuildId = Ulid.NewUlid();
 
     string BuildVersion
@@ -49,7 +49,7 @@ class Build : NukeBuild
     }
 
     bool IsReleaseTag => GithubRef == $"refs/tags/v{Version}";
-    
+
     [Secret, Parameter("NuGet API key")] readonly string? NuGetApiKey;
 
     [UsedImplicitly]
@@ -96,7 +96,7 @@ class Build : NukeBuild
                 .EnableNoBuild()
             );
         });
-    
+
     Target Pack => pack => pack
         .WhenSkipped(DependencyBehavior.Skip)
         .DependsOn(Test)
@@ -110,7 +110,7 @@ class Build : NukeBuild
                 .EnableNoBuild()
             );
         });
-    
+
     [UsedImplicitly]
     Target Publish => publish => publish
         .DependsOn(Pack)
