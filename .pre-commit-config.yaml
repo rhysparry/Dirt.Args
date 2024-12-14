@@ -9,3 +9,11 @@ repos:
     - id: fix-byte-order-marker
     - id: end-of-file-fixer
     - id: trailing-whitespace
+- repo: local
+  hooks:
+    - id: csharpier
+      name: Format C#
+      entry: dotnet tool run dotnet-csharpier
+      language: system
+      types:
+        - c#
