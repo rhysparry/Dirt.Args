@@ -2,7 +2,11 @@ namespace Dirt;
 
 internal static class FlagDataExtensions
 {
-    public static void AddFlagValue(this IDictionary<string, FlagData> flags, string flag, string value)
+    public static void AddFlagValue(
+        this IDictionary<string, FlagData> flags,
+        string flag,
+        string value
+    )
     {
         if (flags.TryGetValue(flag, out var flagData))
         {
@@ -26,6 +30,7 @@ internal static class FlagDataExtensions
         }
     }
 
-    public static IReadOnlyDictionary<string, IFlagData> AsReadOnly(this IDictionary<string, FlagData> flags) =>
-        flags.ToDictionary(x => x.Key, x => x.Value as IFlagData);
+    public static IReadOnlyDictionary<string, IFlagData> AsReadOnly(
+        this IDictionary<string, FlagData> flags
+    ) => flags.ToDictionary(x => x.Key, x => x.Value as IFlagData);
 }

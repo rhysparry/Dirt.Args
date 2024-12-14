@@ -102,7 +102,7 @@ public class ArgsTest
     [Fact]
     public void FlagsListDoesNotContainDuplicates()
     {
-        var rawArguments = new []{ "--flag", "--flag" };
+        var rawArguments = new[] { "--flag", "--flag" };
         var args = new Args(rawArguments);
         var argsData = args as IArgsData;
         Assert.Single(argsData.Flags);

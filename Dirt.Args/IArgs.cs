@@ -14,18 +14,21 @@ public interface IArgs
     /// Flags are case-sensitive.
     /// </remarks>
     bool HasFlag(string flag);
+
     /// <summary>
     /// Gets the number of times the flag was specified.
     /// </summary>
     /// <param name="flag">The flag to check</param>
     /// <returns>The number of times the flag was specified.</returns>
     int GetFlagCount(string flag);
+
     /// <summary>
     /// Gets the value of the specified flag.
     /// </summary>
     /// <param name="flag">The flag to check</param>
     /// <returns>The value of the specified flag, or <see langword="null"/> if the flag was not specified.</returns>
     string? GetFlagValue(string flag);
+
     /// <summary>
     /// Gets the values of the specified flag.
     /// </summary>
@@ -35,6 +38,7 @@ public interface IArgs
     /// has no specified values.
     /// </returns>
     IReadOnlyList<string> GetMultiFlagValue(string flag);
+
     /// <summary>
     /// Gets the remaining arguments that were not parsed as flags.
     /// </summary>
