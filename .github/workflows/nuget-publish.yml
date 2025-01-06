@@ -24,7 +24,7 @@ jobs:
       - name: Test
         run: just test
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: test
     steps:
       - name: Checkout
