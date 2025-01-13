@@ -63,3 +63,10 @@ release: (assert-branch "main") assert-no-pending-changes && push-release
 [private, confirm("Are you sure you want to push the release?")]
 push-release:
     git push origin main --tags
+
+[private]
+restore-tools:
+    dotnet tool restore
+
+lint: restore-tools
+    pre-commit run --all-files
