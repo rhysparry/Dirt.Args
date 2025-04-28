@@ -70,16 +70,12 @@ internal class ArgsData : IArgsData
         Flags = flags.AsReadOnly();
         Remaining = remaining;
 
-        _lazyValueFlags = new Lazy<IReadOnlyDictionary<string, string>>(
-            () =>
-                Flags
-                    .Values.Where(f => f.Values.Count > 0)
-                    .ToDictionary(f => f.Flag, f => f.Values[0])
+        _lazyValueFlags = new Lazy<IReadOnlyDictionary<string, string>>(() =>
+            Flags.Values.Where(f => f.Values.Count > 0).ToDictionary(f => f.Flag, f => f.Values[0])
         );
 
-        _lazyMultiValueFlags = new Lazy<IReadOnlyDictionary<string, IReadOnlyList<string>>>(
-            () =>
-                Flags.Values.Where(f => f.Values.Count > 0).ToDictionary(f => f.Flag, f => f.Values)
+        _lazyMultiValueFlags = new Lazy<IReadOnlyDictionary<string, IReadOnlyList<string>>>(() =>
+            Flags.Values.Where(f => f.Values.Count > 0).ToDictionary(f => f.Flag, f => f.Values)
         );
     }
 
