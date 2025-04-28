@@ -28,7 +28,7 @@ repos:
         - commit-msg
     - id: csharpier
       name: Format C#
-      entry: dotnet tool run csharpier
+      entry: dotnet tool run csharpier format
       language: system
       types:
         - c#
