@@ -24,7 +24,7 @@ Dirt.Args is a simple, no-configuration command-line argument parsing library fo
 - .NET 8.0 SDK
 - `just` command runner
 - `git-cliff` for changelog generation
-- Pre-commit hooks (optional but recommended)
+- Pre-commit hooks (installed via `pre-commit install`)
 
 ### Common Commands
 ```bash
@@ -47,7 +47,7 @@ just pack
 ### CI/CD
 - Automated tests run on Ubuntu and Windows via GitHub Actions
 - Tests are run using `just test` which calls the Nuke build system
-- Pre-commit hooks enforce code formatting and commit message standards
+- Pre-commit hooks (when installed) enforce code formatting and commit message standards locally
 
 ## Coding Conventions
 
