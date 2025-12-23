@@ -21,7 +21,7 @@ Dirt.Args is a simple, no-configuration command-line argument parsing library fo
 ## Build and Test Process
 
 ### Prerequisites
-- .NET 8.0 SDK
+- .NET 10.0 SDK
 - `just` command runner
 - `git-cliff` for changelog generation
 - Pre-commit hooks (installed via `pre-commit install`)
@@ -52,7 +52,7 @@ just pack
 ## Coding Conventions
 
 ### C# Style
-- Use **C# 12** features (primary constructors, file-scoped namespaces, etc.)
+- Use **C# 13** features (primary constructors, file-scoped namespaces, etc.)
 - Follow standard .NET naming conventions (PascalCase for public members, camelCase for parameters)
 - Use nullable reference types consistently
 - Format code using **CSharpier** (automatically applied via pre-commit hooks)
