@@ -52,7 +52,7 @@ just pack
 ## Coding Conventions
 
 ### C# Style
-- Use **C# 12** features (primary constructors, file-scoped namespaces, etc.)
+- Use **C# 14** features (primary constructors, file-scoped namespaces, etc.)
 - Follow standard .NET naming conventions (PascalCase for public members, camelCase for parameters)
 - Use nullable reference types consistently
 - Format code using **CSharpier** (automatically applied via pre-commit hooks)
