@@ -32,5 +32,5 @@ internal static class FlagDataExtensions
 
     public static IReadOnlyDictionary<string, IFlagData> AsReadOnly(
         this IDictionary<string, FlagData> flags
-    ) => flags.ToDictionary(x => x.Key, x => x.Value as IFlagData);
+    ) => flags.ToDictionary(x => x.Key, x => (IFlagData)x.Value);
 }
