@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Add support for loose arguments
+
+### Changed
+
+- Bump the test-dependencies group with 1 update ([#131](https://github.com/rhysparry/Dirt.Args/pull/131))
+- Bump dotnet-sdk from 10.0.101 to 10.0.102 ([#130](https://github.com/rhysparry/Dirt.Args/pull/130))
+- Bump csharpier from 1.2.3 to 1.2.5 ([#129](https://github.com/rhysparry/Dirt.Args/pull/129))
+- Bump Microsoft.SourceLink.GitHub from 8.0.0 to 10.0.102 ([#133](https://github.com/rhysparry/Dirt.Args/pull/133))
+- Bump the test-dependencies group with 1 update ([#135](https://github.com/rhysparry/Dirt.Args/pull/135))
+- Bump csharpier from 1.2.5 to 1.2.6 ([#132](https://github.com/rhysparry/Dirt.Args/pull/132))
+
 ## [1.2.4] - 2025-12-24
 
 ### Added
@@ -181,6 +196,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2024-03-16
 
+[unreleased]: https://github.com/rhysparry/Dirt.Args/compare/v1.2.4..HEAD
 [1.2.4]: https://github.com/rhysparry/Dirt.Args/compare/v1.2.3..v1.2.4
 [1.2.3]: https://github.com/rhysparry/Dirt.Args/compare/v1.2.2..v1.2.3
 [1.2.2]: https://github.com/rhysparry/Dirt.Args/compare/v1.2.1..v1.2.2

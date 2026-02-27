@@ -12,7 +12,6 @@ Specifically, the following features are *not* supported:
 - Validation of parameters
 - Commands
 - Parsing to anything other than strings
-- "Loose" arguments (i.e. associating `bar` with the `--foo` flag in `--foo bar`)
 
 The library does support the following:
 
@@ -22,6 +21,38 @@ The library does support the following:
 - Counting repeated instances of a flag (e.g. `--foo --foo`)
 - Short flags (e.g. `-f`)
 - Multiple values for a single flag (e.g. `--foo=bar --foo=baz`)
+
+## Loose Arguments
+
+By default, values must be assigned using `--flag=value`. The `LooseArgsSource` provides an alternative that supports `--flag value` syntax:
+
+```csharp
+var args = new Dirt.Args(new Dirt.LooseArgsSource());
+
+// With: --output file.txt
+var output = args.GetFlagValue("output"); // "file.txt"
+```
+
+Loose values are collected until the next flag or `--` separator:
+
+```csharp
+// With: --files a.txt b.txt --verbose
+var files = args.GetMultiFlagValue("files"); // ["a.txt", "b.txt"]
+var verbose = args.HasFlag("verbose");       // true
+```
+
+**Behavior notes:**
+- Long flags (`--flag`) start a collection context for subsequent non-flag arguments
+- Explicit values (`--flag=value`) do not start a collection context
+- Short flags (`-f`) do not participate in loose argument collection
+- The `--` separator stops all collection
+- Standard `--flag=value` syntax continues to work alongside loose arguments
+
+You can also wrap a custom `IArgsSource`:
+
+```csharp
+var args = new Dirt.Args(new Dirt.LooseArgsSource(myCustomSource));
+```
 
 ## Usage
 
