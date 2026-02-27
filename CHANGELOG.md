@@ -7,19 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-- Add support for loose arguments
-
-### Changed
-
-- Bump the test-dependencies group with 1 update ([#131](https://github.com/rhysparry/Dirt.Args/pull/131))
-- Bump dotnet-sdk from 10.0.101 to 10.0.102 ([#130](https://github.com/rhysparry/Dirt.Args/pull/130))
-- Bump csharpier from 1.2.3 to 1.2.5 ([#129](https://github.com/rhysparry/Dirt.Args/pull/129))
-- Bump Microsoft.SourceLink.GitHub from 8.0.0 to 10.0.102 ([#133](https://github.com/rhysparry/Dirt.Args/pull/133))
-- Bump the test-dependencies group with 1 update ([#135](https://github.com/rhysparry/Dirt.Args/pull/135))
-- Bump csharpier from 1.2.5 to 1.2.6 ([#132](https://github.com/rhysparry/Dirt.Args/pull/132))
-
 ## [1.2.4] - 2025-12-24
 
 ### Added
