@@ -98,6 +98,13 @@ public class LooseArgsSourceTest
     }
 
     [Fact]
+    public void ShortFlagTerminatesLongFlagCollection()
+    {
+        var source = CreateLooseSource("--flag", "v1", "-f", "v2");
+        Assert.Equal(new[] { "--flag=v1", "-f", "v2" }, source.GetArgs());
+    }
+
+    [Fact]
     public void IntegrationWithArgs()
     {
         var source = CreateLooseSource("--flag", "value1", "value2", "--other=explicit", "loose");
